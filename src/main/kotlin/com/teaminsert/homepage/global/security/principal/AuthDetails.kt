@@ -1,7 +1,7 @@
 package com.teaminsert.homepage.global.security.principal
 
+import com.teaminsert.homepage.domain.user.domain.User
 import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetails
 
 class AuthDetails(
@@ -16,7 +16,7 @@ class AuthDetails(
     }
 
     override fun getUsername(): String {
-        return user.username
+        return user.nickname
     }
 
     override fun isAccountNonExpired(): Boolean {
