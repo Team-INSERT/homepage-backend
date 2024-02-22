@@ -1,6 +1,6 @@
 package com.teaminsert.homepage.domain.auth.domain
 
-import jakarta.persistence.Id
+import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
 
 @RedisHash(value = "refreshToken", timeToLive = 2592000L)

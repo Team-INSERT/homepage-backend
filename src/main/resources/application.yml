@@ -17,11 +17,6 @@ spring:
         format_sql: true
     open-in-view: false
 
-  data:
-    redis:
-      host: ${REDIS_HOST}
-      port: ${REDIS_PORT}
-
 jwt:
   access-time: 3600000 # 1시간
   refresh-time: 2592000000 # 30일
