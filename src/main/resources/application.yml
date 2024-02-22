@@ -16,3 +16,10 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false
+
+jwt:
+  access-time: 3600000 # 1시간
+  refresh-time: 2592000000 # 30일
+  prefix: Bearer
+  header: Authorization
+  secret-key: ${JWT_SECRET}
