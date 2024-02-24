@@ -2,7 +2,7 @@ package com.teaminsert.homepage.domain.post.service
 
 import com.teaminsert.homepage.domain.link.domain.Link
 import com.teaminsert.homepage.domain.post.domain.repository.PostRepository
-import com.teaminsert.homepage.domain.post.presentation.dto.res.SaveRequest
+import com.teaminsert.homepage.domain.post.presentation.dto.req.SaveRequest
 import com.teaminsert.homepage.domain.user.domain.User
 import com.teaminsert.homepage.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service

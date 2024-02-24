@@ -1,6 +1,6 @@
 package com.teaminsert.homepage.domain.post.presentation
 
-import com.teaminsert.homepage.domain.post.presentation.dto.res.SaveRequest
+import com.teaminsert.homepage.domain.post.presentation.dto.req.SaveRequest
 import com.teaminsert.homepage.domain.post.service.SaveService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

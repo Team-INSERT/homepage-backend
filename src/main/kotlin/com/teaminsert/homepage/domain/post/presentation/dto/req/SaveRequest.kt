@@ -1,4 +1,4 @@
-package com.teaminsert.homepage.domain.post.presentation.dto.res
+package com.teaminsert.homepage.domain.post.presentation.dto.req
 
 import com.teaminsert.homepage.domain.link.domain.Link
 import com.teaminsert.homepage.domain.post.domain.Post
