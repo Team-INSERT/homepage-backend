@@ -13,14 +13,24 @@ import jakarta.persistence.OneToMany
 
 @Entity
 class User(
-        var email: String,
-        var nickname: String,
-        var authority: Authority,
-
-        @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-        val posts: List<Post>
+        email: String,
+        nickname: String,
+        authority: Authority
 ) {
     @Column(name = "user_id")
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
+
+    var email: String = email
+        protected set
+
+    var nickname: String = nickname
+        protected set
+
+    var authority: Authority = authority
+        protected set
+
+    @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    var posts: List<Post>? = null
+        protected set
 }
