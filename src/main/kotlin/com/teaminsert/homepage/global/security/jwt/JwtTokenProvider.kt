@@ -45,7 +45,7 @@ class JwtTokenProvider(
     }
 
     fun resolveToken(request: HttpServletRequest): String? {
-        val bearer: String = request.getHeader("Authorization")
+        val bearer: String? = request.getHeader("Authorization")
         return parseToken(bearer)
     }
 

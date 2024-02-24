@@ -11,7 +11,9 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint
 
 @Configuration
 @EnableWebSecurity
-class SecurityConfig {
+class SecurityConfig(
+        private val jwtProvider: JwtTokenProvider
+) {
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf().disable()
@@ -21,6 +23,9 @@ class SecurityConfig {
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+        http.addFilterBefore(JwtTokenFilter(jwtProvider),
+                UsernamePasswordAuthenticationFilter::class.java)
 
         http.cors().and()
                 .authorizeRequests()
