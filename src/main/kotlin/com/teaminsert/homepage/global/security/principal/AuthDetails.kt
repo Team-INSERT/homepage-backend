@@ -2,13 +2,15 @@ package com.teaminsert.homepage.global.security.principal
 
 import com.teaminsert.homepage.domain.user.domain.User
 import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.util.Collections
 
 class AuthDetails(
         private val user: User
 ): UserDetails {
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
-        return null
+    override fun getAuthorities(): Collection<GrantedAuthority?> {
+        return listOf<SimpleGrantedAuthority>(SimpleGrantedAuthority("ROLE_" + user.authority))
     }
 
     override fun getPassword(): String? {

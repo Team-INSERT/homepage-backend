@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfig(
         private val jwtProvider: JwtTokenProvider
 ) {
+    private val ADMIN: String = "ADMIN"
+
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.csrf().disable()
@@ -32,7 +34,7 @@ class SecurityConfig(
 
         http.cors().and()
                 .authorizeRequests()
-                .requestMatchers("/post").authenticated()
+                .requestMatchers("/post").hasRole(ADMIN)
                 .anyRequest().permitAll()
 
         http.exceptionHandling().authenticationEntryPoint(
