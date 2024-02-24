@@ -22,4 +22,8 @@ class Link(
     @JoinColumn(name = "post_id")
     var post: Post? = null
         protected set
+
+    fun updatePost(post: Post) {
+        this.post = post
+    }
 }
