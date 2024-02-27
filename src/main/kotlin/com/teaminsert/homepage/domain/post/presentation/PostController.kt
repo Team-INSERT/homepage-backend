@@ -1,6 +1,6 @@
 package com.teaminsert.homepage.domain.post.presentation
 
-import com.teaminsert.homepage.domain.post.presentation.dto.req.SaveRequest
+import com.teaminsert.homepage.domain.post.presentation.dto.req.PostRequest
 import com.teaminsert.homepage.domain.post.service.ListService
 import com.teaminsert.homepage.domain.post.service.SaveService
 import org.springframework.data.domain.Pageable
@@ -19,6 +19,6 @@ class PostController(
         = listService.execute(category, pageable)
 
     @PostMapping
-    fun save(@RequestBody saveRequest: SaveRequest)
-        = saveService.execute(saveRequest)
+    fun save(@RequestBody postRequest: PostRequest)
+        = saveService.execute(postRequest)
 }

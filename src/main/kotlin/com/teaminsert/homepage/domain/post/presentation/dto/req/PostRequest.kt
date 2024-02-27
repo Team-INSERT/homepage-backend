@@ -5,7 +5,8 @@ import com.teaminsert.homepage.domain.post.domain.Post
 import com.teaminsert.homepage.domain.post.domain.type.Category
 import com.teaminsert.homepage.domain.user.domain.User
 
-data class SaveRequest(
+data class PostRequest(
+        val id: Long,
         val title: String,
         val contents: String,
         val category: String,
@@ -15,6 +16,14 @@ data class SaveRequest(
             val title: String,
             val url: String
     )
+
+    fun toLinks(): List<Link> {
+        val links = mutableListOf<Link>()
+        this.links.forEach {
+            links.add(Link(it.title, it.url))
+        }
+        return links
+    }
 
     fun toEntity(user: User, links: List<Link>) = Post(
             title = title,

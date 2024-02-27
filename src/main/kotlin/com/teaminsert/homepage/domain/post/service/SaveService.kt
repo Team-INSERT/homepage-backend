@@ -1,8 +1,7 @@
 package com.teaminsert.homepage.domain.post.service
 
-import com.teaminsert.homepage.domain.link.domain.Link
 import com.teaminsert.homepage.domain.post.domain.repository.PostRepository
-import com.teaminsert.homepage.domain.post.presentation.dto.req.SaveRequest
+import com.teaminsert.homepage.domain.post.presentation.dto.req.PostRequest
 import com.teaminsert.homepage.domain.user.domain.User
 import com.teaminsert.homepage.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
@@ -14,14 +13,11 @@ class SaveService(
         private val postRepository: PostRepository
 ) {
     @Transactional
-    fun execute(saveRequest: SaveRequest): Long {
+    fun execute(postRequest: PostRequest): Long {
         val user: User = userFacade.getCurrentUser()
-        val links = mutableListOf<Link>()
-        saveRequest.links.forEach {
-            links.add(Link(it.title, it.url))
-        }
 
-        val post = postRepository.save(saveRequest.toEntity(user, links))
+        val links = postRequest.toLinks()
+        val post = postRepository.save(postRequest.toEntity(user, links))
 
         links.forEach {
             it.updatePost(post)
