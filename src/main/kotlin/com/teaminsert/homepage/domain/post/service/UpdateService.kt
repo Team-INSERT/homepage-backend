@@ -15,7 +15,7 @@ class UpdateService(
         private val postFacade: PostFacade,
 ) {
     @Transactional
-    fun execute(postRequest: PostRequest) {
+    fun execute(postRequest: PostRequest): Long {
         val post = postFacade.getPost(postRequest.id)
 
         if (userFacade.getCurrentUser() != post.user)
@@ -26,5 +26,6 @@ class UpdateService(
         post.updatePost(postRequest)
 
         post.links.forEach { it.updatePost(post) }
+        return post.id
     }
 }
