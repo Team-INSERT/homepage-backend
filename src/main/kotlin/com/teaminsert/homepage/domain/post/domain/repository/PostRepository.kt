@@ -14,6 +14,7 @@ interface PostRepository: JpaRepository<Post, Long> {
             "new com.teaminsert.homepage.domain.post.presentation.dto.res.ListPostResponse(" +
             "p.id, p.title, p.user, p.createdAt) " +
             "FROM Post p " +
-            "WHERE p.category = :category")
+            "WHERE p.category = :category " +
+            "ORDER BY p.id DESC")
     fun findByCategory(@Param("category") category: Category, pageable: Pageable): Page<ListPostResponse>
 }

@@ -15,7 +15,7 @@ class PostController(
         private val saveService: SaveService
 ) {
     @GetMapping
-    fun list(category: String, @PageableDefault(page = 0, size = 10, direction = Sort.Direction.DESC) pageable: Pageable)
+    fun list(category: String, @PageableDefault(page = 0, size = 10) pageable: Pageable)
         = listService.execute(category, pageable)
 
     @PostMapping
