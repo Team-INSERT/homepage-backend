@@ -37,6 +37,7 @@ class SecurityConfig(
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/post").hasRole(ADMIN)
                 .requestMatchers(HttpMethod.PUT, "/post").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.DELETE, "/post").hasRole(ADMIN)
                 .anyRequest().permitAll()
 
         http.exceptionHandling().authenticationEntryPoint(
