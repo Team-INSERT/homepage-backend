@@ -25,14 +25,13 @@ class GoogleAuthService(
         val email: String = response.email
 
         userRepository.findByEmail(email) ?: run {
-            if (email.endsWith("@bssm.hs.kr")) {
-                userRepository.save(User(email,
-                        response.name,
-                        if (email.startsWith("teacher")) Authority.ADMIN
-                        else Authority.USER))
-            } else {
+            if (!email.endsWith("@bssm.hs.kr"))
                 throw SchoolUserNotException.EXCEPTION
-            }
+
+            userRepository.save(User(email,
+                    response.name,
+                    if (email.startsWith("teacher")) Authority.ADMIN
+                    else Authority.USER))
         }
 
         return TokenResponse(
