@@ -29,3 +29,20 @@ auth:
     base-url: ${GOOGLE_BASE_URL}
     client-id: ${GOOGLE_CLIENT}
     redirect-url: ${GOOGLE_REDIRECT}
+
+cloud:
+  aws:
+    s3:
+      bucket: ${AWS_BUKET}
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+      instance-profile: true
+    region:
+      static: ${AWS_REGION}
+    stack:
+      auto: false
+
+logging:
+  level:
+    com.amazonaws.util.EC2MetadataUtils: error

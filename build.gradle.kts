@@ -34,6 +34,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
+	implementation("io.awspring.cloud:spring-cloud-starter-aws:2.3.1")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.3")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("com.mysql:mysql-connector-j")
