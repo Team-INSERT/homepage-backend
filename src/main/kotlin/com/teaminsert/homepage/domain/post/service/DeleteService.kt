@@ -18,8 +18,10 @@ class DeleteService(
         val user = userFacade.getCurrentUser()
         val post = postRepository.findByIdOrNull(id)
                 ?: throw PostNotFoundException.EXCEPTION
+
         if (user != post.user)
             throw UserNotMatchException.EXCEPTION
+
         postRepository.deleteById(id)
     }
 }

@@ -15,7 +15,6 @@ class SaveService(
     @Transactional
     fun execute(postRequest: PostRequest): Long {
         val user: User = userFacade.getCurrentUser()
-
         val links = postRequest.toLinks()
         val post = postRepository.save(postRequest.toEntity(user, links))
 

@@ -24,8 +24,8 @@ class UpdateService(
         linkRepository.deleteAll(post.links)
 
         post.updatePost(postRequest)
-
         post.links.forEach { it.updatePost(post) }
+
         return post.id
     }
 }
