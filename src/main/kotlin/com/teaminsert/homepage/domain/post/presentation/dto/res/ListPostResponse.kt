@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 class ListPostResponse(
         val id: Long,
         val title: String,
+        val thumbnail: String?,
         user: User,
         val createdDate: LocalDateTime
 ) {

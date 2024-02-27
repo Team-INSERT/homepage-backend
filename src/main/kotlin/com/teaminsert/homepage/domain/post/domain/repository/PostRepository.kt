@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param
 interface PostRepository: JpaRepository<Post, Long> {
     @Query("SELECT " +
             "new com.teaminsert.homepage.domain.post.presentation.dto.res.ListPostResponse(" +
-            "p.id, p.title, p.user, p.createdAt) " +
+            "p.id, p.title, p.thumbnail, p.user, p.createdAt) " +
             "FROM Post p " +
             "WHERE p.category = :category " +
             "ORDER BY p.id DESC")

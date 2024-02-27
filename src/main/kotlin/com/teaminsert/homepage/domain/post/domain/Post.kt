@@ -11,6 +11,7 @@ import jakarta.persistence.*
 class Post(
         title: String,
         contents: String,
+        thumbnail: String?,
         category: Category,
         links: List<Link>,
         user: User,
@@ -24,6 +25,9 @@ class Post(
         protected set
 
     var contents: String = contents
+        protected set
+
+    var thumbnail: String? = thumbnail
         protected set
 
     @Enumerated(value = EnumType.STRING)
@@ -42,6 +46,7 @@ class Post(
     fun updatePost(postRequest: PostRequest) {
         this.title = postRequest.title
         this.contents = postRequest.contents
+        this.thumbnail = postRequest.thumbnail
         this.category = Category.valueOf(postRequest.category)
         this.links = postRequest.toLinks()
     }
