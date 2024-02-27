@@ -36,6 +36,7 @@ class SecurityConfig(
         http.cors().and()
                 .authorizeRequests()
                 .requestMatchers(HttpMethod.POST, "/post").hasRole(ADMIN)
+                .requestMatchers(HttpMethod.PUT, "/post").hasRole(ADMIN)
                 .anyRequest().permitAll()
 
         http.exceptionHandling().authenticationEntryPoint(

@@ -2,6 +2,7 @@ package com.teaminsert.homepage.domain.post.domain
 
 import com.teaminsert.homepage.domain.link.domain.Link
 import com.teaminsert.homepage.domain.post.domain.type.Category
+import com.teaminsert.homepage.domain.post.presentation.dto.req.PostRequest
 import com.teaminsert.homepage.domain.user.domain.User
 import com.teaminsert.homepage.global.entity.BaseTimeEntity
 import jakarta.persistence.*
@@ -37,4 +38,11 @@ class Post(
     @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     var links :List<Link> = links
         protected set
+
+    fun updatePost(postRequest: PostRequest) {
+        this.title = postRequest.title
+        this.contents = postRequest.contents
+        this.category = Category.valueOf(postRequest.category)
+        this.links = postRequest.toLinks()
+    }
 }

@@ -6,6 +6,7 @@ enum class ErrorCode(
         val status: HttpStatus,
         val message: String
 ) {
+    USER_NOT_MATCH(HttpStatus.BAD_REQUEST, "User Not Match"),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
     POST_NOT_FOUND(HttpStatus.NOT_FOUND, "Post Not Found"),
     SCHOOL_USER_NOT(HttpStatus.NOT_FOUND, "School User Not"),
