@@ -1,8 +1,11 @@
 package com.teaminsert.homepage.domain.user.presentation
 
+import com.teaminsert.homepage.domain.auth.domain.RefreshToken
 import com.teaminsert.homepage.domain.auth.presentation.dto.req.AccessTokenRequest
+import com.teaminsert.homepage.domain.auth.presentation.dto.req.RefreshTokenRequest
 import com.teaminsert.homepage.domain.user.service.GoogleAuthService
 import com.teaminsert.homepage.domain.user.service.GoogleLinkService
+import com.teaminsert.homepage.domain.user.service.LogoutService
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
@@ -10,7 +13,8 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class GoogleController(
         private val googleLinkService: GoogleLinkService,
-        private val googleAuthService: GoogleAuthService
+        private val googleAuthService: GoogleAuthService,
+        private val logoutService: LogoutService
 ) {
     @GetMapping
     fun getGoogleAuthLink() = googleLinkService.execute()
@@ -18,4 +22,8 @@ class GoogleController(
     @PostMapping
     fun login(@RequestBody @Valid accessTokenRequest: AccessTokenRequest)
         = googleAuthService.execute(accessTokenRequest.accessToken)
+
+    @DeleteMapping
+    fun logout(@RequestBody refreshTokenRequest: RefreshTokenRequest)
+        = logoutService.execute(refreshTokenRequest.refreshToken)
 }
