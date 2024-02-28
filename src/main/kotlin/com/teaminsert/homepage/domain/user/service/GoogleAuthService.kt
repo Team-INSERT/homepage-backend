@@ -21,22 +21,25 @@ class GoogleAuthService(
     fun execute(accessToken: String): TokenResponse {
         val response: GoogleInformationResponse = googleInformationClient
                 .getInformation(accessToken)
-
         val email: String = response.email
 
-        userRepository.findByEmail(email) ?: run {
-            if (!email.endsWith("@bssm.hs.kr"))
-                throw SchoolUserNotException
-
-            userRepository.save(User(email,
-                    response.name,
-                    if (email.startsWith("teacher")) Authority.ADMIN
-                    else Authority.USER))
-        }
+        userRepository.findByEmail(email)
+                ?: save(email, response.name)
 
         return TokenResponse(
                 jwtTokenProvider.createAccessToken(email),
                 jwtTokenProvider.createRefreshToken(email)
         )
+    }
+
+    private fun save(email: String, nickname: String) {
+        if (!email.endsWith("@bssm.hs.kr"))
+            throw SchoolUserNotException
+
+        userRepository.save(User(
+                email,
+                nickname,
+                if (email.startsWith("teacher")) Authority.ADMIN
+                else Authority.USER))
     }
 }
