@@ -15,6 +15,6 @@ interface PostRepository: JpaRepository<Post, Long> {
             "p.id, p.title, p.thumbnail, p.user, p.createdAt) " +
             "FROM Post p " +
             "WHERE p.category = :category " +
-            "ORDER BY p.id DESC")
+            "ORDER BY p.id")
     fun findByCategory(@Param("category") category: Category, pageable: Pageable): Page<ListPostResponse>
 }

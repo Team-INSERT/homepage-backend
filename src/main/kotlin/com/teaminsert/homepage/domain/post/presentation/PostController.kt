@@ -18,7 +18,7 @@ class PostController(
         private val deleteService: DeleteService
 ) {
     @GetMapping
-    fun list(category: String, @PageableDefault(page = 0, size = 10) pageable: Pageable)
+    fun list(category: String, pageable: Pageable)
         = listService.execute(category, pageable)
 
     @PostMapping
