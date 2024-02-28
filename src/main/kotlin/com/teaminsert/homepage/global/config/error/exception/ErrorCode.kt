@@ -7,10 +7,8 @@ enum class ErrorCode(
         val message: String
 ) {
     USER_NOT_MATCH(HttpStatus.BAD_REQUEST, "User Not Match"),
+    SCHOOL_USER_NOT(HttpStatus.BAD_REQUEST, "School User Not"),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "User Not Found"),
     POST_NOT_FOUND(HttpStatus.NOT_FOUND, "Post Not Found"),
-    SCHOOL_USER_NOT(HttpStatus.NOT_FOUND, "School User Not"),
     EXPIRED_JWT(HttpStatus.UNAUTHORIZED, "Expired Jwt"),
-
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "인터널 서버 에러");
 }

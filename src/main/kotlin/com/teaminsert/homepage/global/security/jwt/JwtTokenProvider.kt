@@ -69,7 +69,7 @@ class JwtTokenProvider(
             return Jwts.parser().setSigningKey(jwtProperties.secretKey)
                     .parseClaimsJws(token).body
         } catch (e: Exception) {
-            throw ExpiredJwtException.EXCEPTION
+            throw ExpiredJwtException
         }
     }
 }

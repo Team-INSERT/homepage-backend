@@ -11,5 +11,5 @@ class PostFacade(
 ) {
     fun getPost(id: Long)
         = postRepository.findByIdOrNull(id)
-            ?: throw PostNotFoundException.EXCEPTION
+            ?: throw PostNotFoundException
 }

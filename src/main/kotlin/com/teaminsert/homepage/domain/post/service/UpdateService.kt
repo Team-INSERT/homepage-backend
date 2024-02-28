@@ -19,7 +19,7 @@ class UpdateService(
         val post = postFacade.getPost(postRequest.id)
 
         if (userFacade.getCurrentUser() != post.user)
-            throw UserNotMatchException.EXCEPTION
+            throw UserNotMatchException
 
         linkRepository.deleteAll(post.links)
 

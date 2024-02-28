@@ -16,5 +16,5 @@ class UserFacade(
     }
 
     fun getUserByEmail(email: String)
-        = userRepository.findByEmail(email) ?: throw UserNotFoundException.EXCEPTION
+        = userRepository.findByEmail(email) ?: throw UserNotFoundException
 }

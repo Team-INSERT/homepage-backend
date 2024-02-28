@@ -1,5 +1,5 @@
 package com.teaminsert.homepage.global.config.error.exception
 
-open class BusinessException(
+abstract class BusinessException(
         val errorCode: ErrorCode
-): RuntimeException() {}
+): RuntimeException()

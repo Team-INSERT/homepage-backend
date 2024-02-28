@@ -23,5 +23,5 @@ class AccessTokenGetService(
 
     fun getRefreshToken(token: String)
         = refreshTokenRepository.findByIdOrNull(token)
-            ?: throw ExpiredJwtException.EXCEPTION
+            ?: throw ExpiredJwtException
 }

@@ -17,10 +17,10 @@ class DeleteService(
     fun execute(id: Long) {
         val user = userFacade.getCurrentUser()
         val post = postRepository.findByIdOrNull(id)
-                ?: throw PostNotFoundException.EXCEPTION
+                ?: throw PostNotFoundException
 
         if (user != post.user)
-            throw UserNotMatchException.EXCEPTION
+            throw UserNotMatchException
 
         postRepository.deleteById(id)
     }

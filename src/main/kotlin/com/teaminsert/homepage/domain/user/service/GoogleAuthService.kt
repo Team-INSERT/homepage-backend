@@ -26,7 +26,7 @@ class GoogleAuthService(
 
         userRepository.findByEmail(email) ?: run {
             if (!email.endsWith("@bssm.hs.kr"))
-                throw SchoolUserNotException.EXCEPTION
+                throw SchoolUserNotException
 
             userRepository.save(User(email,
                     response.name,
