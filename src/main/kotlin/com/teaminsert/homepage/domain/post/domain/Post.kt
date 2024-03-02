@@ -34,12 +34,12 @@ class Post(
     var category: Category = category
         protected set
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     var user: User = user
         protected set
 
-    @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL])
     var links :List<Link> = links
         protected set
 

@@ -35,7 +35,7 @@ class SecurityConfig(
 
         http.cors().and()
                 .authorizeRequests()
-                .requestMatchers(HttpMethod.GET, "/post").permitAll()
+                .requestMatchers(HttpMethod.GET, "/post/**").permitAll()
                 .requestMatchers("/post/**").hasRole(ADMIN)
                 .anyRequest().permitAll()
 

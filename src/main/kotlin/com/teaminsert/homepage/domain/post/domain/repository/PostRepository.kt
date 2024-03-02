@@ -17,4 +17,7 @@ interface PostRepository: JpaRepository<Post, Long> {
             "WHERE p.category = :category " +
             "ORDER BY p.id")
     fun findByCategory(@Param("category") category: Category, pageable: Pageable): Page<ListPostResponse>
+
+    @Query("SELECT p FROM Post p JOIN FETCH p.links l JOIN FETCH p.user u WHERE p.id = :id")
+    fun findByIdJoin(@Param("id") id: Long): Post?
 }
