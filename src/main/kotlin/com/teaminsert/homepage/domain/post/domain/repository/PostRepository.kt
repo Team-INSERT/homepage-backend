@@ -7,9 +7,10 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
+import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
 
-interface PostRepository: JpaRepository<Post, Long> {
+interface PostRepository: CrudRepository<Post, Long> {
     @Query("SELECT " +
             "new com.teaminsert.homepage.domain.post.presentation.dto.res.ListPostResponse(" +
             "p.id, p.title, p.thumbnail, p.user, p.createdAt) " +
