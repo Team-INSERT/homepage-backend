@@ -1,5 +1,6 @@
 package com.teaminsert.homepage.domain.post.presentation.dto.res
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.teaminsert.homepage.domain.user.domain.User
 import java.time.LocalDateTime
 
@@ -8,7 +9,8 @@ class ListPostResponse(
         val title: String,
         val thumbnail: String?,
         user: User,
+        val isAuthor: Boolean,
         val createdDate: LocalDateTime
 ) {
-    val user = user.nickname
+    val nickname = user.nickname
 }
