@@ -18,7 +18,7 @@ interface PostRepository: CrudRepository<Post, Long> {
             "FROM Post p " +
             "WHERE p.category = :category " +
             "ORDER BY p.id")
-    fun findByCategory(@Param("email") user: String, @Param("category") category: Category, pageable: Pageable): Page<ListPostResponse>
+    fun findByCategory(@Param("email") user: String?, @Param("category") category: Category, pageable: Pageable): Page<ListPostResponse>
 
     @Query("SELECT p FROM Post p JOIN FETCH p.links l JOIN FETCH p.user u WHERE p.id = :id")
     fun findByIdJoin(@Param("id") id: Long): Post?

@@ -1,6 +1,5 @@
 package com.teaminsert.homepage.domain.post.presentation.dto.res
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.teaminsert.homepage.domain.user.domain.User
 import java.time.LocalDateTime
 

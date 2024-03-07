@@ -2,8 +2,10 @@ package com.teaminsert.homepage.domain.post.service
 
 import com.teaminsert.homepage.domain.post.domain.repository.PostRepository
 import com.teaminsert.homepage.domain.post.domain.type.Category
+import com.teaminsert.homepage.domain.post.presentation.dto.res.ListPostResponse
 import com.teaminsert.homepage.domain.user.domain.User
 import com.teaminsert.homepage.domain.user.facade.UserFacade
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,11 +16,10 @@ class ListService(
         private val postRepository: PostRepository
 ) {
     @Transactional(readOnly = true)
-    fun execute(category: String, pageable: Pageable) {
+    fun execute(category: String, pageable: Pageable): Page<ListPostResponse> {
         var user = ""
         if (userFacade.isLogin())
             user = userFacade.getCurrentUser().email
-        postRepository.findByCategory(user, Category.valueOf(category), pageable)
-
+        return postRepository.findByCategory(user, Category.valueOf(category), pageable)
     }
 }
