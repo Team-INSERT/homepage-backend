@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.HttpStatusEntryPoint
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.web.cors.CorsUtils
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +27,7 @@ class SecurityConfig(
                 .httpBasic().disable()
                 .formLogin().disable()
                 .logout().disable()
+                .cors()
 
         http.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -33,11 +35,12 @@ class SecurityConfig(
         http.addFilterBefore(JwtTokenFilter(jwtProvider),
                 UsernamePasswordAuthenticationFilter::class.java)
 
-        http.cors().and()
-                .authorizeRequests()
-                .requestMatchers(HttpMethod.GET, "/post/**").permitAll()
-                .requestMatchers("/post/**").hasRole(ADMIN)
-                .anyRequest().permitAll()
+        http
+            .authorizeRequests()
+            .requestMatchers(CorsUtils::isCorsRequest).permitAll()
+            .requestMatchers(HttpMethod.GET, "/post/**").permitAll()
+            .requestMatchers("/post/**").hasRole(ADMIN)
+            .anyRequest().permitAll()
 
         http.exceptionHandling().authenticationEntryPoint(
                 HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
