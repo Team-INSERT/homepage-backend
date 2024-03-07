@@ -26,9 +26,9 @@ jwt:
 
 auth:
   google:
-    base-url: ${GOOGLE_BASE_URL}
-    client-id: ${GOOGLE_CLIENT}
-    redirect-url: ${GOOGLE_REDIRECT}
+    base-url: ${HOMEPAGE_GOOGLE_BASE_URL}
+    client-id: ${HOMEPAGE_GOOGLE_CLIENT}
+    redirect-url: ${HOMEPAGE_GOOGLE_REDIRECT}
 
 cloud:
   aws:
