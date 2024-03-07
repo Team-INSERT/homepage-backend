@@ -37,7 +37,7 @@ class SecurityConfig(
 
         http
             .authorizeRequests()
-            .requestMatchers(CorsUtils::isCorsRequest).permitAll()
+            .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
             .requestMatchers(HttpMethod.GET, "/post/**").permitAll()
             .requestMatchers("/post/**").hasRole(ADMIN)
             .anyRequest().permitAll()
