@@ -3,10 +3,8 @@ package com.teaminsert.homepage.domain.post.domain.repository
 import com.teaminsert.homepage.domain.post.domain.Post
 import com.teaminsert.homepage.domain.post.domain.type.Category
 import com.teaminsert.homepage.domain.post.presentation.dto.res.ListPostResponse
-import com.teaminsert.homepage.domain.user.domain.User
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.repository.query.Param
@@ -14,7 +12,7 @@ import org.springframework.data.repository.query.Param
 interface PostRepository: CrudRepository<Post, Long> {
     @Query("SELECT " +
             "new com.teaminsert.homepage.domain.post.presentation.dto.res.ListPostResponse(" +
-            "p.id, p.title, p.thumbnail, p.user, CASE WHEN p.user.email = :email THEN true ELSE false END, p.createdAt) " +
+            "p.id, p.title, LEFT(p.contents, 50), p.thumbnail, p.user, CASE WHEN p.user.email = :email THEN true ELSE false END, p.createdAt) " +
             "FROM Post p " +
             "WHERE p.category = :category " +
             "ORDER BY p.id")
