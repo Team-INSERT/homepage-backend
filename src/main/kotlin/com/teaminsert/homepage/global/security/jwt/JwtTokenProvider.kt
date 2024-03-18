@@ -4,17 +4,17 @@ import com.teaminsert.homepage.domain.auth.domain.RefreshToken
 import com.teaminsert.homepage.domain.auth.domain.repository.RefreshTokenRepository
 import com.teaminsert.homepage.global.config.properties.JwtProperties
 import com.teaminsert.homepage.global.security.jwt.exception.ExpiredJwtException
+import com.teaminsert.homepage.global.security.jwt.exception.InvalidJwtException
 import com.teaminsert.homepage.global.security.principal.UserDetailsService
 import io.jsonwebtoken.Claims
+import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
-import java.net.http.HttpRequest
-import java.util.Date
-import javax.security.auth.Subject
+import java.util.*
 
 @Component
 class JwtTokenProvider(
@@ -62,14 +62,16 @@ class JwtTokenProvider(
     }
 
     fun getTokenSubject(subject: String):String
-        = getTokenBody(subject).subject
+        = getTokenBody(subject).body.subject
 
-    fun getTokenBody(token: String): Claims {
+    fun getTokenBody(token: String): Jws<Claims> {
         try {
             return Jwts.parser().setSigningKey(jwtProperties.secretKey)
-                    .parseClaimsJws(token).body
-        } catch (e: Exception) {
+                    .parseClaimsJws(token)
+        } catch (e: io.jsonwebtoken.ExpiredJwtException) {
             throw ExpiredJwtException
+        } catch (e: Exception) {
+            throw InvalidJwtException
         }
     }
 }

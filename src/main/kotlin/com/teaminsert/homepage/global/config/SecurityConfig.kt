@@ -1,5 +1,6 @@
 package com.teaminsert.homepage.global.config
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.teaminsert.homepage.global.security.jwt.JwtTokenFilter
 import com.teaminsert.homepage.global.security.jwt.JwtTokenProvider
 import org.springframework.context.annotation.Bean
@@ -17,6 +18,7 @@ import org.springframework.web.cors.CorsUtils
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
+        private val objectMapper: ObjectMapper,
         private val jwtProvider: JwtTokenProvider
 ) {
     private val ADMIN: String = "ADMIN"
@@ -43,6 +45,9 @@ class SecurityConfig(
 
         http.exceptionHandling().authenticationEntryPoint(
                 HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+
+        http
+            .apply(FilterConfig(objectMapper, jwtProvider))
 
         return http.build()
     }
